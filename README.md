@@ -3,7 +3,7 @@ Para ambos proyectos (Frontend y backend) se utilizó la arquitectura limpia (cl
 .En el servidor las carpetas están divididas por servicios
 .En el cliente las carpetas están divididas por features
 
-## Esctrutura de la carpeta frontend
+## 📂 Esctrutura de la carpeta frontend
 ```tree
 ├── public
 ├── src
@@ -29,7 +29,7 @@ Para ambos proyectos (Frontend y backend) se utilizó la arquitectura limpia (cl
     └── router.tsx                                       
 ```
 
-## Esctrutura de la carpeta backend
+## 📂 Esctrutura de la carpeta backend
 ```tree
 ├── src
     ├── configs                                          
