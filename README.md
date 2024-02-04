@@ -1,4 +1,45 @@
 # Prueba técnica
+Para ambos proyectos (Frontend y backend) se utilizó la arquitectura limpia (clean architecture)
+.En el servidor las carpetas están divididas por servicios
+.En el cliente las carpetas están divididas por features
+
+## Esctrutura de la carpeta frontend
+```tree
+├── public
+├── src
+    ├── components
+    ├── configs
+    ├── constants
+    ├── hooks
+    ├── layout
+    ├── store                                           
+    ├── features                                      
+    |   └── auth                                   
+    |       ├── grapqhl
+    |       ├── hooks
+    |       ├── layout
+    |       ├── models
+    |       ├── pages
+    |       ├── redux
+    |       └── routes.ts                           
+    ├── app.tsx
+    ├── app.css        
+    ├── index.tsx
+    ├── index.css                                        
+    └── router.tsx                                       
+```
+
+## Esctrutura de la carpeta backend
+```tree
+├── src
+    ├── configs                                          
+    ├── event                                   
+    |     ├── constants
+    |     ├── entities
+    |     └── resolvers                          
+    ├── app.ts                                              
+    └── index.ts                                     
+```
 
 ## 🛫 Getting Started
 
