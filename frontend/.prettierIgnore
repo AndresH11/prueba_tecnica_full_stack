@@ -1,0 +1,6 @@
+dist
+node_module
+package-lock.json
+build
+src/types
+public
