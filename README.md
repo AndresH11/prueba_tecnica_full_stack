@@ -48,7 +48,7 @@ En el frontend hay algunos botones e inputs que solo son esteticos, no tiene fun
 
 ```sh
 # Clonar el proyecto
-git clone https://github.com/AndresH11/Node-TypeScript-Fastify.git
+git clone https://github.com/AndresH11/prueba_tecnica_full_stack.git
 
 # Entrar a la carpeta prinpal
 cd prueba_tecnica_full_stack
