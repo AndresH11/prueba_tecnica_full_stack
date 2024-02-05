@@ -11,10 +11,10 @@ export const connect = async () => {
 		password: 'andres123', // SI TIENES CONTRASEÑA COLOCARLA, DE LO CONTRARIO DEJARLO VACIO
 		database: 'events', // DEBES CREAR UNA DB CON EL NOMBRE event
 		entities: [
-			join(__dirname, '../users/entities/**/**.ts'),
-			join(__dirname, '../event/entities/**/**.ts'),
-			join(__dirname, '../comments/entities/**/**.ts'),
-			join(__dirname, '../customs/entities/**/**.ts'),
+			join(__dirname, '../users/entities/**/**.{ts,js}'),
+			join(__dirname, '../event/entities/**/**.{ts,js}'),
+			join(__dirname, '../comments/entities/**/**.{ts,js}'),
+			join(__dirname, '../customs/entities/**/**.{ts,js}'),
 		],
 	})
 
