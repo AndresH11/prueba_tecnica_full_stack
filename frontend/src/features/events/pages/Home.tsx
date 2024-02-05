@@ -13,6 +13,7 @@ import { useGetFinishedEvent } from '../hooks/use_get_finished_event'
 import { CommentBox } from '../features/comments/components/commentBox'
 import { MessangeBox } from '../features/comments/components/MessageBox'
 import { useComments } from '../features/comments/hooks/use_get_comment'
+import { Spinner } from 'flowbite-react'
 
 export const Home = () => {
 	const [eventId, setEventId] = useState<number>()
@@ -22,9 +23,9 @@ export const Home = () => {
 	const { getFinishedEvent } = useGetFinishedEvent()
 	const { reservar } = useReservarEvento()
 	const { getComment } = useComments()
-	const events = useAppSelector(state => state.event.events)
-	const finishedEvents = useAppSelector(state => state.finishedEvents.events)
-	const comments = useAppSelector(state => state.comments.comments)
+	const stateEvents = useAppSelector(state => state.event)
+	const stateFinishedEvents = useAppSelector(state => state.finishedEvents)
+	const stateComments = useAppSelector(state => state.comments)
 	const user = useAppSelector(state => state.user.user)
 
 	useEffect(() => {
@@ -63,24 +64,30 @@ export const Home = () => {
 			<section className="mt-20 lg:w-9/12 lg:mx-auto lg:mt-64 px-10 lg:px-20 lg:space-x-10">
 				<h2 className="text-[#242565] font-bold text-4xl">Eventos</h2>
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					{events.map(event => (
-						<CardEvent
-							onClick={() =>
-								onClickCardEvent({
-									eventId: event.id,
-									availableCups: event.availableCups,
-								})
-							}
-							key={event.id}
-							title={event.name}
-							srcImage={event.imagePath}
-							details={event.description}
-							month={MONTH[new Date(Number(event.date)).getMonth()]}
-							day={new Date(Number(event.date)).getDate()}
-							totalCups={event.totalCups}
-							availableCups={event.availableCups}
-						/>
-					))}
+					{stateEvents.loading ? (
+						<Spinner />
+					) : (
+						<>
+							{stateEvents.events.map(event => (
+								<CardEvent
+									onClick={() =>
+										onClickCardEvent({
+											eventId: event.id,
+											availableCups: event.availableCups,
+										})
+									}
+									key={event.id}
+									title={event.name}
+									srcImage={event.imagePath}
+									details={event.description}
+									month={MONTH[new Date(Number(event.date)).getMonth()]}
+									day={new Date(Number(event.date)).getDate()}
+									totalCups={event.totalCups}
+									availableCups={event.availableCups}
+								/>
+							))}
+						</>
+					)}
 				</div>
 				<div className="flex justify-center items-center mt-20">
 					<Button>Load more</Button>
@@ -102,19 +109,25 @@ export const Home = () => {
 					Eventor finalizados
 				</h2>
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					{finishedEvents.map(event => (
-						<CardEvent
-							onClick={() => onClickComments(event.id)}
-							key={event.id}
-							title={event.name}
-							srcImage={event.imagePath}
-							details={event.description}
-							month={MONTH[new Date(Number(event.date)).getMonth()]}
-							day={new Date(Number(event.date)).getDate()}
-							totalCups={event.totalCups}
-							availableCups={event.availableCups}
-						/>
-					))}
+					{stateFinishedEvents.loading ? (
+						<Spinner />
+					) : (
+						<>
+							{stateFinishedEvents.events.map(event => (
+								<CardEvent
+									onClick={() => onClickComments(event.id)}
+									key={event.id}
+									title={event.name}
+									srcImage={event.imagePath}
+									details={event.description}
+									month={MONTH[new Date(Number(event.date)).getMonth()]}
+									day={new Date(Number(event.date)).getDate()}
+									totalCups={event.totalCups}
+									availableCups={event.availableCups}
+								/>
+							))}
+						</>
+					)}
 				</div>
 				<div className="flex justify-center items-center mt-20">
 					<Button>Load more</Button>
@@ -129,14 +142,20 @@ export const Home = () => {
 					</p>
 					<CommentBox userId={user?.id!} eventId={eventId!} />
 					<div className="max-h-[420px] space-y-5 scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-auto">
-						{comments.map(comment => (
-							<MessangeBox
-								key={comment.id}
-								nickName={comment.user.nickName}
-								message={comment.comment}
-								date={comment.date}
-							/>
-						))}
+						{stateComments.loading ? (
+							<Spinner />
+						) : (
+							<>
+								{stateComments.comments.map(comment => (
+									<MessangeBox
+										key={comment.id}
+										nickName={comment.user.nickName}
+										message={comment.comment}
+										date={comment.date}
+									/>
+								))}
+							</>
+						)}
 					</div>
 				</CustomDialog>
 			</section>

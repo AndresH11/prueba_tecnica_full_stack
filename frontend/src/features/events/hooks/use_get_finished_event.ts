@@ -1,13 +1,14 @@
 import { useLazyQuery } from '@apollo/client'
-import { useAppDispatch, useAppSelector } from '../../../store/store'
+import { useAppDispatch } from '../../../store/store'
 import { allEvents, request, fail } from '../redux/finished_event_slice'
 import toast from 'react-hot-toast'
 import { GET_EVENTS_FINISHED } from '../graphql/queries/get_events_finished'
 
 export const useGetFinishedEvent = () => {
 	const dispatch = useAppDispatch()
-	const events = useAppSelector(state => state.event.events)
-	const [getFinishedEvents] = useLazyQuery(GET_EVENTS_FINISHED)
+	const [getFinishedEvents] = useLazyQuery(GET_EVENTS_FINISHED, {
+		fetchPolicy: 'no-cache',
+	})
 
 	const getFinishedEvent = async () => {
 		dispatch(request())
@@ -18,7 +19,7 @@ export const useGetFinishedEvent = () => {
 				dispatch(fail())
 				return
 			}
-			if (events.length > 0) return
+
 			dispatch(allEvents(data.getFinishedEvents.data))
 			return
 		} catch (error) {

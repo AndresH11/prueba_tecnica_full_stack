@@ -57,6 +57,7 @@ export class CommentResolver {
 			const comments = await CommentEntity.find({
 				relations: { event: true, user: true },
 				where: { event: { id: eventId } },
+				order: { id: 'DESC' },
 			})
 			return { data: comments }
 		} catch (error) {

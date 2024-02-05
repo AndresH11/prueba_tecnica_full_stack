@@ -1,6 +1,6 @@
 import { useMutation } from '@apollo/client'
 import { useAppDispatch } from '../../../../../store/store'
-import { request, fail, addComment } from '../redux/comments_slice'
+import { fail, addComment } from '../redux/comments_slice'
 import toast from 'react-hot-toast'
 import { SEND_COMMENT } from '../graphql/mutations/comment_mutation'
 
@@ -15,7 +15,6 @@ export const useSendComment = () => {
 	const [sendCommnet] = useMutation(SEND_COMMENT)
 
 	const sendComment = async ({ eventId, userId, comment }: Comment) => {
-		dispatch(request())
 		try {
 			const { data } = await sendCommnet({
 				variables: { eventId, userId, comment },

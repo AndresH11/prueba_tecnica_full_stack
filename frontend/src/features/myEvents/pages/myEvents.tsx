@@ -7,13 +7,14 @@ import { MONTH } from '../../../constants/month'
 import { useGetAllMyEvents } from '../hooks/user_get_all_my_events'
 import { useAppSelector } from '../../../store/store'
 import { useRemoveMyEvents } from '../hooks/use_remove_my_events'
+import { Spinner } from 'flowbite-react'
 
 export const MyEvents = () => {
 	const [eventId, setEventId] = useState<number>()
 	const [userEventId, setUserEventId] = useState<number>()
 	const { getAllMyEvent } = useGetAllMyEvents()
 	const { removeMyEvent } = useRemoveMyEvents()
-	const myEvents = useAppSelector(state => state.myEvents.events)
+	const stateMyEvents = useAppSelector(state => state.myEvents)
 	const dialogMyEvents = useDialog()
 
 	useEffect(() => {
@@ -35,19 +36,25 @@ export const MyEvents = () => {
 		<section className="mt-10 px-20 space-x-10">
 			<h2 className="text-[#242565] font-bold text-4xl">Mis eventos</h2>
 			<div className="flex justify-between items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] overflow-y-scroll overscroll-y-contain">
-				{myEvents.map(event => (
-					<CardEvent
-						onClick={() => onClickCard(event.id, event.event.id)}
-						key={event.id}
-						title={event.event.name}
-						srcImage={event.event.imagePath}
-						details={event.event.description}
-						month={MONTH[new Date(Number(event.event.date)).getMonth()]}
-						day={new Date(Number(event.event.date)).getDay()}
-						totalCups={event.event.totalCups}
-						availableCups={event.event.availableCups}
-					/>
-				))}
+				{stateMyEvents.loading ? (
+					<Spinner />
+				) : (
+					<>
+						{stateMyEvents.events.map(event => (
+							<CardEvent
+								onClick={() => onClickCard(event.id, event.event.id)}
+								key={event.id}
+								title={event.event.name}
+								srcImage={event.event.imagePath}
+								details={event.event.description}
+								month={MONTH[new Date(Number(event.event.date)).getMonth()]}
+								day={new Date(Number(event.event.date)).getDay()}
+								totalCups={event.event.totalCups}
+								availableCups={event.event.availableCups}
+							/>
+						))}
+					</>
+				)}
 			</div>
 			<div className="flex justify-center items-center mt-20">
 				<Button>Load more</Button>

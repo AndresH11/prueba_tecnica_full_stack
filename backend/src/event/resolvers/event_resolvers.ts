@@ -1,6 +1,7 @@
 import { Arg, Field, Mutation, ObjectType, Query, Resolver } from 'type-graphql'
 import { EventEntity } from '../entities/event_entity'
 import { STATUS_EVENT } from '../constants/status_event'
+import { mocks } from '../../mocks/events_mock'
 
 @ObjectType()
 class ResponseEvent {
@@ -24,20 +25,18 @@ class ResponseCreateEvent {
 @Resolver()
 export class EventResolver {
 	@Mutation(() => ResponseCreateEvent)
-	async createEvent(
-		@Arg('imagePath') imagePath: string,
-		@Arg('name') name: string,
-		@Arg('description') description: string,
-		@Arg('totalCups') totalCups: number
-	) {
+	async createEvent() {
 		try {
-			await EventEntity.save({
-				imagePath,
-				name,
-				description,
-				totalCups,
-				availableCups: totalCups,
-				status: STATUS_EVENT.await,
+			mocks.forEach(async mock => {
+				await EventEntity.save({
+					imagePath: mock.imagePath,
+					name: mock.name,
+					description: mock.description,
+					totalCups: mock.totalCups,
+					availableCups: mock.totalCups,
+					status: mock.status,
+					date: `${new Date().getTime()}`,
+				})
 			})
 			return { data: 'Se ha creado el evento de forma exitosa' }
 		} catch (error) {
