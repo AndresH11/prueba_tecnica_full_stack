@@ -15,7 +15,7 @@ export const Header = () => {
 	]
 	return (
 		<header
-			className={`flex justify-between items-center left-0 right-0 md:z-10 lg:px-20 py-5 px-5 lg:py-0 bg-black ${pathname === HOME ? 'lg:absolute lg:mt-5 lg:bg-transparent' : 'h-20 bg-gradient-to-r from-purple-700 to-indigo-600'}`}>
+			className={`flex justify-between items-center left-0 right-0 md:z-10 lg:px-20 py-5 px-5 lg:py-0 bg-black ${pathname === HOME ? 'lg:absolute lg:mt-5 lg:bg-transparent' : 'lg:h-20 lg:bg-gradient-to-r lg:from-purple-700 lg:to-indigo-600'}`}>
 			<figure className="w-36 h-9">
 				<img
 					className="w-full h-full"

@@ -7,7 +7,8 @@ import { MONTH } from '../../../constants/month'
 import { useGetAllMyEvents } from '../hooks/user_get_all_my_events'
 import { useAppSelector } from '../../../store/store'
 import { useRemoveMyEvents } from '../hooks/use_remove_my_events'
-import { Spinner } from 'flowbite-react'
+import { StateComponentWrapper } from '../../../components/common/StateComponentWrapper'
+import { WrapperSection } from '../../../components/common/wrapperSection'
 
 export const MyEvents = () => {
 	const [eventId, setEventId] = useState<number>()
@@ -33,28 +34,23 @@ export const MyEvents = () => {
 	}
 
 	return (
-		<section className="mt-10 px-20 space-x-10">
-			<h2 className="text-[#242565] font-bold text-4xl">Mis eventos</h2>
+		<WrapperSection title="Mis eventos">
 			<div className="flex justify-between items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] overflow-y-scroll overscroll-y-contain">
-				{stateMyEvents.loading ? (
-					<Spinner />
-				) : (
-					<>
-						{stateMyEvents.events.map(event => (
-							<CardEvent
-								onClick={() => onClickCard(event.id, event.event.id)}
-								key={event.id}
-								title={event.event.name}
-								srcImage={event.event.imagePath}
-								details={event.event.description}
-								month={MONTH[new Date(Number(event.event.date)).getMonth()]}
-								day={new Date(Number(event.event.date)).getDay()}
-								totalCups={event.event.totalCups}
-								availableCups={event.event.availableCups}
-							/>
-						))}
-					</>
-				)}
+				<StateComponentWrapper isLoading={stateMyEvents.loading}>
+					{stateMyEvents.events.map(event => (
+						<CardEvent
+							onClick={() => onClickCard(event.id, event.event.id)}
+							key={event.id}
+							title={event.event.name}
+							srcImage={event.event.imagePath}
+							details={event.event.description}
+							month={MONTH[new Date(Number(event.event.date)).getMonth()]}
+							day={new Date(Number(event.event.date)).getDay()}
+							totalCups={event.event.totalCups}
+							availableCups={event.event.availableCups}
+						/>
+					))}
+				</StateComponentWrapper>
 			</div>
 			<div className="flex justify-center items-center mt-20">
 				<Button>Load more</Button>
@@ -79,6 +75,6 @@ export const MyEvents = () => {
 					<Button onClick={dialogMyEvents.onClose}>Devolver</Button>
 				</div>
 			</CustomDialog>
-		</section>
+		</WrapperSection>
 	)
 }

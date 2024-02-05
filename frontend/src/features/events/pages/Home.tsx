@@ -13,7 +13,8 @@ import { useGetFinishedEvent } from '../hooks/use_get_finished_event'
 import { CommentBox } from '../features/comments/components/commentBox'
 import { MessangeBox } from '../features/comments/components/MessageBox'
 import { useComments } from '../features/comments/hooks/use_get_comment'
-import { Spinner } from 'flowbite-react'
+import { StateComponentWrapper } from '../../../components/common/StateComponentWrapper'
+import { WrapperSection } from '../../../components/common/wrapperSection'
 
 export const Home = () => {
 	const [eventId, setEventId] = useState<number>()
@@ -61,33 +62,28 @@ export const Home = () => {
 	return (
 		<>
 			<Poster />
-			<section className="mt-20 lg:w-9/12 lg:mx-auto lg:mt-64 px-10 lg:px-20 lg:space-x-10">
-				<h2 className="text-[#242565] font-bold text-4xl">Eventos</h2>
+			<WrapperSection title="Eventos">
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					{stateEvents.loading ? (
-						<Spinner />
-					) : (
-						<>
-							{stateEvents.events.map(event => (
-								<CardEvent
-									onClick={() =>
-										onClickCardEvent({
-											eventId: event.id,
-											availableCups: event.availableCups,
-										})
-									}
-									key={event.id}
-									title={event.name}
-									srcImage={event.imagePath}
-									details={event.description}
-									month={MONTH[new Date(Number(event.date)).getMonth()]}
-									day={new Date(Number(event.date)).getDate()}
-									totalCups={event.totalCups}
-									availableCups={event.availableCups}
-								/>
-							))}
-						</>
-					)}
+					<StateComponentWrapper isLoading={stateEvents.loading}>
+						{stateEvents.events.map(event => (
+							<CardEvent
+								onClick={() =>
+									onClickCardEvent({
+										eventId: event.id,
+										availableCups: event.availableCups,
+									})
+								}
+								key={event.id}
+								title={event.name}
+								srcImage={event.imagePath}
+								details={event.description}
+								month={MONTH[new Date(Number(event.date)).getMonth()]}
+								day={new Date(Number(event.date)).getDate()}
+								totalCups={event.totalCups}
+								availableCups={event.availableCups}
+							/>
+						))}
+					</StateComponentWrapper>
 				</div>
 				<div className="flex justify-center items-center mt-20">
 					<Button>Load more</Button>
@@ -102,32 +98,25 @@ export const Home = () => {
 					<p className="font-bold text-xl text-[#242565]">Reserva un cupo</p>
 					<Button onClick={onClickReservar}>Reservar cupo</Button>
 				</CustomDialog>
-			</section>
+			</WrapperSection>
 			<div className="mt-10 mx-20 h-1 bg-gray-600 border border-gray-600" />
-			<section className="mt-20 lg:w-9/12 lg:mx-auto lg:mt-64 px-10 lg:px-20 lg:space-x-10">
-				<h2 className="text-[#242565] font-bold text-4xl">
-					Eventor finalizados
-				</h2>
+			<WrapperSection title="Eventos finalizados">
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					{stateFinishedEvents.loading ? (
-						<Spinner />
-					) : (
-						<>
-							{stateFinishedEvents.events.map(event => (
-								<CardEvent
-									onClick={() => onClickComments(event.id)}
-									key={event.id}
-									title={event.name}
-									srcImage={event.imagePath}
-									details={event.description}
-									month={MONTH[new Date(Number(event.date)).getMonth()]}
-									day={new Date(Number(event.date)).getDate()}
-									totalCups={event.totalCups}
-									availableCups={event.availableCups}
-								/>
-							))}
-						</>
-					)}
+					<StateComponentWrapper isLoading={stateFinishedEvents.loading}>
+						{stateFinishedEvents.events.map(event => (
+							<CardEvent
+								onClick={() => onClickComments(event.id)}
+								key={event.id}
+								title={event.name}
+								srcImage={event.imagePath}
+								details={event.description}
+								month={MONTH[new Date(Number(event.date)).getMonth()]}
+								day={new Date(Number(event.date)).getDate()}
+								totalCups={event.totalCups}
+								availableCups={event.availableCups}
+							/>
+						))}
+					</StateComponentWrapper>
 				</div>
 				<div className="flex justify-center items-center mt-20">
 					<Button>Load more</Button>
@@ -142,23 +131,19 @@ export const Home = () => {
 					</p>
 					<CommentBox userId={user?.id!} eventId={eventId!} />
 					<div className="max-h-[420px] space-y-5 scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-auto">
-						{stateComments.loading ? (
-							<Spinner />
-						) : (
-							<>
-								{stateComments.comments.map(comment => (
-									<MessangeBox
-										key={comment.id}
-										nickName={comment.user.nickName}
-										message={comment.comment}
-										date={comment.date}
-									/>
-								))}
-							</>
-						)}
+						<StateComponentWrapper isLoading={stateComments.loading}>
+							{stateComments.comments.map(comment => (
+								<MessangeBox
+									key={comment.id}
+									nickName={comment.user.nickName}
+									message={comment.comment}
+									date={comment.date}
+								/>
+							))}
+						</StateComponentWrapper>
 					</div>
 				</CustomDialog>
-			</section>
+			</WrapperSection>
 		</>
 	)
 }
