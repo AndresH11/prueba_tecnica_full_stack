@@ -89,6 +89,10 @@ Una vez le haya salido el mensaje vaya a su base de datos y verifique que si cre
 
 <img src="https://github.com/AndresH11/prueba_tecnica_full_stack/assets/92903830/71fc3005-dd5a-4add-a48c-4a6d360c3276" width="800px" />
 
+## Esquema sql de la base de datos
+
+<img src="https://github.com/AndresH11/prueba_tecnica_full_stack/assets/92903830/3db184ad-39d1-4345-ba9b-833468b962e3" width="800px" />
+
 Listo, ya podemos avanzar para el frontend
 
 ## Levantar el proyecto frontend
