@@ -10,7 +10,7 @@ interface ICardEvent {
 }
 export const CardEvent = (props: ICardEvent) => (
 	<div
-		className="max-w-80 min-h-80 bg-white rounded-2xl drop-shadow-lg hover:scale-105 transition-transform"
+		className="max-w-80 min-h-80 bg-white rounded-2xl drop-shadow-lg hover:scale-105 transition-transform cursor-pointer"
 		onClick={props.onClick}>
 		<figure>
 			<img

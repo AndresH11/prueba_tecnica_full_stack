@@ -64,7 +64,10 @@ export const Home = () => {
 			<Poster />
 			<WrapperSection title="Eventos">
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					<StateComponentWrapper isLoading={stateEvents.loading}>
+					<StateComponentWrapper
+						isLoading={stateEvents.loading}
+						length={stateEvents.events.length}
+						voidMessagne="No hay eventos creados">
 						{stateEvents.events.map(event => (
 							<CardEvent
 								onClick={() =>
@@ -102,7 +105,10 @@ export const Home = () => {
 			<div className="mt-10 mx-20 h-1 bg-gray-600 border border-gray-600" />
 			<WrapperSection title="Eventos finalizados">
 				<div className="flex justify-center items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-scroll overscroll-y-contain">
-					<StateComponentWrapper isLoading={stateFinishedEvents.loading}>
+					<StateComponentWrapper
+						isLoading={stateFinishedEvents.loading}
+						length={stateFinishedEvents.events.length}
+						voidMessagne="No hay eventos creados">
 						{stateFinishedEvents.events.map(event => (
 							<CardEvent
 								onClick={() => onClickComments(event.id)}
@@ -131,7 +137,10 @@ export const Home = () => {
 					</p>
 					<CommentBox userId={user?.id!} eventId={eventId!} />
 					<div className="max-h-[420px] space-y-5 scrollbar-thin scrollbar-thumb-[#242565] scrollbar-track-white overflow-y-auto">
-						<StateComponentWrapper isLoading={stateComments.loading}>
+						<StateComponentWrapper
+							isLoading={stateComments.loading}
+							length={stateComments.comments.length}
+							voidMessagne="No hay comentarios">
 							{stateComments.comments.map(comment => (
 								<MessangeBox
 									key={comment.id}

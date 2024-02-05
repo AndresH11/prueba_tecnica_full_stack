@@ -36,7 +36,10 @@ export const MyEvents = () => {
 	return (
 		<WrapperSection title="Mis eventos">
 			<div className="flex justify-between items-center flex-wrap gap-10 py-10 mt-10 max-h-[949px] overflow-y-scroll overscroll-y-contain">
-				<StateComponentWrapper isLoading={stateMyEvents.loading}>
+				<StateComponentWrapper
+					isLoading={stateMyEvents.loading}
+					length={stateMyEvents.events.length}
+					voidMessagne="No tienes eventos reservados">
 					{stateMyEvents.events.map(event => (
 						<CardEvent
 							onClick={() => onClickCard(event.id, event.event.id)}
