@@ -71,7 +71,25 @@ npm i
 npm run dev
 ```
 Si configuraste bien el archivo typeorm.ts debera de salir el siguiente mensaje
+
 <img src="https://github.com/AndresH11/prueba_tecnica_full_stack/assets/92903830/ddecbafc-4384-459c-8480-3d2567f214d9" width="800px" />
+
+Una vez se haya levantado el servidor, entre a su navegador y navegue a la siguiente ruta
+
+```sh
+# Ruta
+http://localhost:3000/graphql
+```
+
+Cuando esté en la ruta ejecute la función que se muestra en la siguiente imagen, una vez ejecutada debe salir un mensaje de que todo salio bien, esa función es para crear eventos, internamente el servidor tiene un mock de datos para crear los eventos y así haya datos para mostrar en el frontend
+
+<img src="https://github.com/AndresH11/prueba_tecnica_full_stack/assets/92903830/59b65946-bcad-4b6b-aaa4-04295ae1b6fa" width="800px" />
+
+Una vez le haya salido el mensaje vaya a su base de datos y verifique que si creo los datos como se muestra en la siguiente imagen
+
+<img src="https://github.com/AndresH11/prueba_tecnica_full_stack/assets/92903830/71fc3005-dd5a-4add-a48c-4a6d360c3276" width="800px" />
+
+Listo, ya podemos avanzar para el frontend
 
 ## Levantar el proyecto frontend
 ```sh
