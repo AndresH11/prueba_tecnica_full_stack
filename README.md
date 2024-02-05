@@ -6,6 +6,8 @@ Para ambos proyectos (Frontend y backend) se utilizó la arquitectura limpia (cl
 ## 🚨 🚨 🚨 🚨 🚨IMPORTANTE 🚨 🚨 🚨 🚨 🚨
 En el frontend hay algunos botones e inputs que solo son esteticos, no tiene funcionalidad, si precionas un boton y no pasa nada es porque no tiene funcionalidad, solo está con fines esteticos. Gracias
 
+****** Importante: Debes tener instalado eslint y prettier en el vsCode
+
 ## 📂 Esctrutura de la carpeta frontend
 ```tree
 ├── public
