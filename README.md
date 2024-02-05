@@ -74,6 +74,12 @@ npm i
 
 # Levantar el proyecto
 npm run dev
+
+
+# Si te llega a salir un error que no reconoce la extension .ts puedes ejecutar los siguientes comandos
+npm run build
+
+npm start
 ```
 Si configuraste bien el archivo typeorm.ts debera de salir el siguiente mensaje
 
