@@ -3,6 +3,9 @@ Para ambos proyectos (Frontend y backend) se utilizó la arquitectura limpia (cl
 .En el servidor las carpetas están divididas por servicios
 .En el cliente las carpetas están divididas por features
 
+## 🚨 🚨 🚨 🚨 🚨IMPORTANTE 🚨 🚨 🚨 🚨 🚨
+En el frontend hay algunos botones e inputs que solo son esteticos, no tiene funcionalidad, si precionas un boton y no pasa nada es porque no tiene funcionalidad, solo está con fines esteticos. Gracias
+
 ## 📂 Esctrutura de la carpeta frontend
 ```tree
 ├── public
